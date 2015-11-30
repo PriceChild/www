@@ -9,7 +9,7 @@
 <ol>To create a new self-signed certificate:
 	<li><p>Open a new shell, and ensure newly-created files won't be readable by anybody else:</p>
 		<span class="verbatim-b">umask 077</span></li>
-	<li><p>Use openssl to create a new RSA certificate. We suggest a 2048-bit certificate, but 1024, 4096, or other lengths may also work if your IRC client supports them. If you do not want to protect your certificate with a passphrase, add <span class="verbatim-i">-nodes</span> to the options below. Not having a passphrase means anybody with access to read your certificate file will be able to identify as you. With a passphrase, both access to the certificate file and knowledge of the passphrase would be required. The certificate generated will expire in two years. If you want a longer/shorter time, you can change the number after <span class="verbatim-i">-days</span>.</p>
+	<li><p>Use openssl to create a new RSA certificate. We suggest a 2048-bit certificate, but 1024, 4096, or other lengths may also work if your IRC client supports them. The default behaviour encrypts your certificate with a passphrase, requiring that passphrase for use and helping prevent anyone else with read access to the file from identifying as you. Unfortunately some clients such as irssi do not support passphrases and so this must be disabled. If you do not want to protect your certificate with a passphrase, add <span class="verbatim-i">-nodes</span> to the options below. The certificate generated will expire in two years. If you want a longer/shorter time, you can change the number after <span class="verbatim-i">-days</span>.</p>
 		<span class="verbatim-b">openssl req -newkey rsa:2048 -days 730 -x509 -keyout mynick.key -out mynick.cert</span></li>
 	<li><p>OpenSSL will ask for a passphrase (unless you added <span class="verbatim-i">-nodes</span>), and depending on its configuration, perhaps a number of other attributes. The values you enter are not important to the IRC server.</p>
 		<span class="verbatim-b">Enter PEM pass phrase:</span>
@@ -38,4 +38,3 @@
 <!--#set var="SPONSOR_LINKS" value="<small>
 	</small>"-->
 <!--#include virtual="${VIRTROOT}include/trailer.shtml" -->
-
